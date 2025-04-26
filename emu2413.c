@@ -213,7 +213,7 @@ enum __OPLL_EG_STATE { ATTACK, DECAY, SUSTAIN, RELEASE, DAMP, UNKNOWN };
 static uint32_t ml_table[16] = {1,     1 * 2, 2 * 2,  3 * 2,  4 * 2,  5 * 2,  6 * 2,  7 * 2,
                                 8 * 2, 9 * 2, 10 * 2, 10 * 2, 12 * 2, 12 * 2, 15 * 2, 15 * 2};
 
-#define dB2(x) ((x)*2)
+#define dB2(x) ((x) * 2)
 static double kl_table[16] = {dB2(0.000),  dB2(9.000),  dB2(12.000), dB2(13.875), dB2(15.000), dB2(16.125),
                               dB2(16.875), dB2(17.625), dB2(18.000), dB2(18.750), dB2(19.125), dB2(19.500),
                               dB2(19.875), dB2(20.250), dB2(20.625), dB2(21.000)};
@@ -1201,7 +1201,7 @@ void OPLL_setQuality(OPLL *opll, uint8_t q) {}
 
 void OPLL_setChipType(OPLL *opll, uint8_t type) { opll->chip_type = type; }
 
-void OPLL_writeReg(OPLL *opll, uint32_t reg, uint8_t data) {
+void OPLL_writeReg(OPLL *opll, uint8_t reg, uint8_t data) {
   int ch, i;
 
   if (reg >= 0x40)
@@ -1220,7 +1220,7 @@ void OPLL_writeReg(OPLL *opll, uint32_t reg, uint8_t data) {
     opll->patch[0].PM = (data >> 6) & 1;
     opll->patch[0].EG = (data >> 5) & 1;
     opll->patch[0].KR = (data >> 4) & 1;
-    opll->patch[0].ML = (data)&15;
+    opll->patch[0].ML = (data) & 15;
     for (i = 0; i < 9; i++) {
       if (opll->patch_number[i] == 0) {
         request_update(MOD(opll, i), UPDATE_RKS | UPDATE_EG);
@@ -1233,7 +1233,7 @@ void OPLL_writeReg(OPLL *opll, uint32_t reg, uint8_t data) {
     opll->patch[1].PM = (data >> 6) & 1;
     opll->patch[1].EG = (data >> 5) & 1;
     opll->patch[1].KR = (data >> 4) & 1;
-    opll->patch[1].ML = (data)&15;
+    opll->patch[1].ML = (data) & 15;
     for (i = 0; i < 9; i++) {
       if (opll->patch_number[i] == 0) {
         request_update(CAR(opll, i), UPDATE_RKS | UPDATE_EG);
@@ -1243,7 +1243,7 @@ void OPLL_writeReg(OPLL *opll, uint32_t reg, uint8_t data) {
 
   case 0x02:
     opll->patch[0].KL = (data >> 6) & 3;
-    opll->patch[0].TL = (data)&63;
+    opll->patch[0].TL = (data) & 63;
     for (i = 0; i < 9; i++) {
       if (opll->patch_number[i] == 0) {
         request_update(MOD(opll, i), UPDATE_TLL);
@@ -1255,7 +1255,7 @@ void OPLL_writeReg(OPLL *opll, uint32_t reg, uint8_t data) {
     opll->patch[1].KL = (data >> 6) & 3;
     opll->patch[1].WS = (data >> 4) & 1;
     opll->patch[0].WS = (data >> 3) & 1;
-    opll->patch[0].FB = (data)&7;
+    opll->patch[0].FB = (data) & 7;
     for (i = 0; i < 9; i++) {
       if (opll->patch_number[i] == 0) {
         request_update(MOD(opll, i), UPDATE_WS);
@@ -1266,7 +1266,7 @@ void OPLL_writeReg(OPLL *opll, uint32_t reg, uint8_t data) {
 
   case 0x04:
     opll->patch[0].AR = (data >> 4) & 15;
-    opll->patch[0].DR = (data)&15;
+    opll->patch[0].DR = (data) & 15;
     for (i = 0; i < 9; i++) {
       if (opll->patch_number[i] == 0) {
         request_update(MOD(opll, i), UPDATE_EG);
@@ -1276,7 +1276,7 @@ void OPLL_writeReg(OPLL *opll, uint32_t reg, uint8_t data) {
 
   case 0x05:
     opll->patch[1].AR = (data >> 4) & 15;
-    opll->patch[1].DR = (data)&15;
+    opll->patch[1].DR = (data) & 15;
     for (i = 0; i < 9; i++) {
       if (opll->patch_number[i] == 0) {
         request_update(CAR(opll, i), UPDATE_EG);
@@ -1286,7 +1286,7 @@ void OPLL_writeReg(OPLL *opll, uint32_t reg, uint8_t data) {
 
   case 0x06:
     opll->patch[0].SL = (data >> 4) & 15;
-    opll->patch[0].RR = (data)&15;
+    opll->patch[0].RR = (data) & 15;
     for (i = 0; i < 9; i++) {
       if (opll->patch_number[i] == 0) {
         request_update(MOD(opll, i), UPDATE_EG);
@@ -1296,7 +1296,7 @@ void OPLL_writeReg(OPLL *opll, uint32_t reg, uint8_t data) {
 
   case 0x07:
     opll->patch[1].SL = (data >> 4) & 15;
-    opll->patch[1].RR = (data)&15;
+    opll->patch[1].RR = (data) & 15;
     for (i = 0; i < 9; i++) {
       if (opll->patch_number[i] == 0) {
         request_update(CAR(opll, i), UPDATE_EG);
@@ -1375,7 +1375,7 @@ void OPLL_writeReg(OPLL *opll, uint32_t reg, uint8_t data) {
   }
 }
 
-void OPLL_writeIO(OPLL *opll, uint32_t adr, uint8_t val) {
+void OPLL_writeIO(OPLL *opll, uint8_t adr, uint8_t val) {
   if (adr & 1)
     OPLL_writeReg(opll, opll->adr, val);
   else

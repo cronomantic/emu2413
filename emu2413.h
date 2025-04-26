@@ -176,8 +176,8 @@ void OPLL_setPanFine(OPLL *opll, uint32_t ch, float pan[2]);
  */
 void OPLL_setChipType(OPLL *opll, uint8_t type);
 
-void OPLL_writeIO(OPLL *opll, uint32_t reg, uint8_t val);
-void OPLL_writeReg(OPLL *opll, uint32_t reg, uint8_t val);
+void OPLL_writeIO(OPLL *opll, uint8_t reg, uint8_t val);
+void OPLL_writeReg(OPLL *opll, uint8_t reg, uint8_t val);
 
 /**
  * Calculate one sample
